@@ -1035,16 +1035,8 @@ RsquareAdj(rda(flowering_otu_rda~DOC+NH+NO+P+MBC+MBN+MBP+PH,data=env_log))$adj.r
 st=as.data.frame(flowering_rda_ill$sites)[1:2]
 bi=as.data.frame(flowering_rda_ill$biplot)[1:2]*3
 
-rda_species <- flowering_rda_ill[["species"]]
-rda_species <- as.data.frame(rda_species)
-rda_species <- rda_species[order(rda_species[,1],rda_species[2]),]
-top10 <- c("OTU57","OTU575","OTU392","OTU206","OTU55","OTU115","OTU384","OTU371","OTU423","OTU338")
-rda_top10 <- rda_species[top10,]
-rda_top10 <- as.data.frame(rda_top10)
-
 ggplot(data = st,aes(RDA1,RDA2)) +
   geom_point(aes(color = design_flowering_rda$Treatment1,size=4))+
-  geom_point(data = rda_species,aes(RDA1,RDA2),size=3)+
   geom_segment(data = bi,aes(x = 0, y = 0, xend = RDA1, yend = RDA2), 
                arrow = arrow(angle=22.5,length = unit(0.35,"cm"),
                              type = "closed"),linetype=1, size=0.6,colour = "blue")+
